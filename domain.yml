@@ -1,0 +1,44 @@
+version: "3.1"
+intents:
+  - bot_challenge
+  - request_recipe
+  - provide_ingredients
+  - greet
+  - goodbye
+
+entities:
+  - dish_name
+  - ingredient
+
+actions:
+  - action_get_recipe
+
+slots:
+  dish_name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: dish_name
+
+  ingredient:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: ingredient
+recipe_type:
+    type: categorical
+    values:
+      - veg
+      - non-veg
+    mappings:
+      - type: from_entity
+        entity: recipe_type
+responses:
+  utter_greet:
+    - text: "Hello! I can help you with recipes. What would you like to cook today?"
+  utter_goodbye:
+    - text: "Goodbye! Happy cooking!"
+  utter_ask_ingredients:
+    - text: "Please provide the ingredients you have."
+  utter_iamabot:
+    - text: "I am an AI assistant powered by Rasa."
